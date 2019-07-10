@@ -1,11 +1,14 @@
 package com.michael.service;
 
 import com.michael.domain.User;
+import com.michael.dto.UserDTO;
 import com.michael.repository.UserRepository;
+import com.michael.service.exception.ObjectNotFoundExcept;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -15,6 +18,35 @@ public class UserService {
 
     public List<User> findAll(){
         return userRepository.findAll();
+    }
+
+    public User findById(String id){
+        Optional<User> obj = userRepository.findById(id);
+        return obj.orElseThrow(() -> new ObjectNotFoundExcept("Objeto não encontrado"));
+    }
+
+    public User insert(User obj){
+        return userRepository.insert(obj);
+    }
+
+    public User fromDTO(UserDTO objDTO){
+        return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
+    }
+
+    public void delete(String id){
+        findById(id);
+        userRepository.deleteById(id);
+    }
+
+    public User update(User obj){
+        User newObj = findById(obj.getId());
+        updateData(newObj, obj);
+        return userRepository.save(newObj);
+    }
+
+    private void updateData(User newObj, User obj) {
+        newObj.setName(obj.getName());
+        newObj.setEmail(obj.getEmail());
     }
 
 }
