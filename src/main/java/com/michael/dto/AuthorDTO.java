@@ -2,13 +2,16 @@ package com.michael.dto;
 
 import com.michael.domain.User;
 
-public class AuthDTO {
+public class AuthorDTO {
 
     private String id;
     private String name;
 
 
-    public AuthDTO(User obj) {
+    public AuthorDTO() {
+    }
+
+    public AuthorDTO(User obj) {
         this.id = obj.getId();
         this.name = obj.getName();
     }

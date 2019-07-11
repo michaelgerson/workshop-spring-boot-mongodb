@@ -1,5 +1,6 @@
 package com.michael.resources;
 
+import com.michael.domain.Post;
 import com.michael.domain.User;
 
 import com.michael.dto.UserDTO;
@@ -57,5 +58,11 @@ public class UserResource {
         obj = userService.update(obj);
         return ResponseEntity.noContent().build();
 
+    }
+
+    @RequestMapping(value="/{id}/posts", method=RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User obj = userService.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 }

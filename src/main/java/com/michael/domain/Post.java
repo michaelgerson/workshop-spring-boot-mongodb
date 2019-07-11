@@ -1,6 +1,6 @@
 package com.michael.domain;
 
-import com.michael.dto.AuthDTO;
+import com.michael.dto.AuthorDTO;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,12 +13,12 @@ public class Post implements Serializable {
     private Date date;
     private String title;
     private String body;
-    private AuthDTO author;
+    private AuthorDTO author;
 
     public Post() {
     }
 
-    public Post(String id, Date date, String title, String body, AuthDTO author) {
+    public Post(String id, Date date, String title, String body, AuthorDTO author) {
         this.id = id;
         this.date = date;
         this.title = title;
@@ -58,11 +58,11 @@ public class Post implements Serializable {
         this.body = body;
     }
 
-    public AuthDTO getAuthor() {
+    public AuthorDTO getAuthor() {
         return author;
     }
 
-    public void setAuthor(AuthDTO author) {
+    public void setAuthor(AuthorDTO author) {
         this.author = author;
     }
 
