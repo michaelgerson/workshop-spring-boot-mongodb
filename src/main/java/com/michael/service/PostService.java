@@ -24,4 +24,8 @@ public class PostService {
         return obj.orElseThrow(() -> new ObjectNotFoundExcept("Objeto não encontrado"));
     }
 
+    public List<Post> findByTitle(String text) {
+        return postRepository.findByTitleContainingIgnoreCase(text);
+    }
+
 }
